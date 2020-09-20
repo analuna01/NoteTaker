@@ -23,19 +23,3 @@ app.listen(PORT, function () {
 
 
 
-
-
-
-// app.get("/notes", function (req, res) {
-//     notes = JSON.parse(fs.readFileSync(path.join(__dirname, "/db/db.json", "utf8")));
-//     res.sendFile(path.join(__dirname, "public/notes.html"));
-// });
-
-// app.get("/api/notes", function (req, res) {
-//     data = JSON.parse(fs.readFileSync(path.join(__dirname, "/db/db.json", "utf8")));
-//     res.sendFile(path.join(__dirname, "public/notes.html"));
-// });
-
-// app.get("/api/notes/:id", function (req, res) {
-
-// });
