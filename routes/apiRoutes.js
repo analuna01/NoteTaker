@@ -1,46 +1,36 @@
-// Load data
-var notes = require("../db/db.json");
+// Dependencies
 var fs = require("fs");
 var path = require("path");
+var util = require("util")
+var writeFileAsync = util.promisify(fs.writeFile);
+
+var notesData = require("../public/assets/data/notesData");
 
 // ROUTER
 
 module.exports = function (app) {
 
-    app.get("/notes", function (req, res) {
-        res.sendFile(path.join(__dirname, "../public/notes.html"));
-    });
+    // GET
 
     app.get("/api/notes", function (req, res) {
-        res.sendFile(path.join(__dirname, "/db/db.json"));
+        res.json(notesData);
     });
 
-
-
-    // API POST Request
+    // POST
 
     app.post("/api/notes", function (req, res) {
-        let newNotes = {
-            title : req.body.title,
-            text : req.body.text,
-        };
+        
+        notesData.push(req.body);
+        fs.writeFileSync(path.join("../db/db.json"), 'utf8');
+        res.json(true);
+    });
 
-        fs.readFile("./db/db.json", "utf8", function(error) {
-            if (error){
-                return console.log(error);
-            }
-            console.log("success!")
-        });
-            const allNotes = JSON.parse(data);
-      
-            allNotes.push(newNotes);
-          
-    })
+    // DELETE
 
-    
-}    
+    // app.delete("/api/notes/:id", function (req, res) {
 
-// var newNotes = JSON.parse(fs.readFileSync(path.join(__dirname, "/db/db.json", "utf8")));
-// res.sendFile(path.join(__dirname, "public/notes.html"));
+    //   });
 
-// newNotes = replacePlaceholders(newNotes, "Note Title", newNotes.get());
+};
+
+
