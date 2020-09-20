@@ -20,5 +20,7 @@ MIT
 - Email: luna.ana92@gmail.com
 
 ## Deployed Application
+- Heroku Git URL: https://git.heroku.com/tranquil-sierra-63903.git
+
 
 
